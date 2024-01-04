@@ -29,8 +29,10 @@ async function run() {
 
     //cart collection
     const cartCollection = client.db('happyShop').collection('carts');
+    //user collection
+    const userCollection = client.db('happyShop').collection('users');
 
-
+//add to cart products API.............
     app.get('/carts', async(req, res)=>{
       const email = req.query.email;
       if(!email){
@@ -43,8 +45,13 @@ async function run() {
 
     app.post('/carts', async(req, res)=>{
         const item = req.body;
-        console.log(item);
         const result = await cartCollection.insertOne(item);
+        res.send(result);
+    })
+    //users API........
+    app.post('/users', async(req, res)=>{
+        const user = req.body;
+        const result = await userCollection.insertOne(user);
         res.send(result);
     })
 
