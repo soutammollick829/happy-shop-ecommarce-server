@@ -25,7 +25,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    client.connect();
 
     //cart collection
     const cartCollection = client.db('happyShop').collection('carts');
@@ -48,7 +48,7 @@ async function run() {
         const result = await cartCollection.insertOne(item);
         res.send(result);
     })
-    //users API........
+    //users API.......
     app.post('/users', async(req, res)=>{
         const user = req.body;
         const result = await userCollection.insertOne(user);
